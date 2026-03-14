@@ -22,7 +22,7 @@ mirror_to_github:
     - GITLAB_SOURCE_USERNAME=${GITLAB_SOURCE_USERNAME::-1}
     - GITHUB_USERNAME=${GITHUB_USERNAME::-1}
     - git clone https://$GITLAB_SOURCE_USERNAME:$GITLAB_SOURCE_PAT@$GITLAB_SOURCE_PATH_RAG.git
-    - cd stocks_tracking-dbks-dbt
+    - cd local-rag-developer-assistant
     - git remote add github https://$GITHUB_USERNAME:$GITHUB_PAT@$GITHUB_PATH_RAG.git
     - git branch -a
     # Create local tracking branches for every origin/* ref (except HEAD)
