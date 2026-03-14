@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "TechNote",
+    "type": "object",
+    "properties": {
+        "Title": {
+            "type": "string",
+            "description": "Main title of the note."
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "List of tags describing the topic."
+        },
+        "Date": {
+            "type": "string",
+            "description": "Date of the note (YYYY-MM-DD or custom format)."
+        },
+        "Related_Files": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "File paths related to the note."
+        },
+        "Problem": {
+            "type": "string",
+            "description": "Description of the problem addressed."
+        },
+        "Reason": {
+            "type": "string",
+            "description": "Optional explanation of why the problem occurs. Only used for bugs or contextual justification.",
+            "nullable": true
+        },
+        "Solution": {
+            "type": "string",
+            "description": "Description of the solution."
+        }
+    },
+    "required": [
+        "Title",
+        "Tags",
+        "Date",
+        "Problem",
+        "Solution"
+    ],
+    "additionalProperties": false
+}

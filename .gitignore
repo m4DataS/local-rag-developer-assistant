@@ -1,0 +1,27 @@
+# Virtual Environment (Contains locally compiled binaries & packages, do not commit)
+rag_env/
+.venv/
+
+# Database (ChromaDB creates this folder locally. Ignored to prevent committing personal vector data & large binary files)
+db/
+
+# Personal Data (Ignore all personal notes in this folder)
+dev_notes/*
+# Exception: Keep the template and one example note so others know how to format them
+!dev_notes/_dev_note_template.md
+!dev_notes/venv_usage.txt
+
+# Standalone note files (Do not commit raw personal scratchpad data)
+notes.txt
+
+# Python Caches (Compiled python bytecode, useless for others and causes merge conflicts)
+__pycache__/
+*.pyc
+*.pyo
+
+# IDEs (Personal editor specific settings)
+.vscode/
+.idea/
+
+# Deprecated/Old scripts
+model_connection.py

@@ -1,0 +1,36 @@
+Title: Python Virtual Environment (venv) Usage
+Tags: Python, venv, Environment, Dev Workflow
+Date: 2025-11-24
+
+Problem:
+    I often forget how to properly create, activate, and deactivate a Python virtual environment, which can lead to package conflicts or scripts not running correctly.
+
+Solution:
+    Steps to use Python venv correctly:
+
+    1. Create a virtual environment:
+        python3 -m venv <env name>
+        - 'env name>' is the name of your environment, you can choose any name.
+        - This creates an isolated environment with its own Python packages.
+
+    2. Activate the virtual environment:
+        - Mac / Linux:
+            source <env name>/bin/activate
+        - Windows (cmd):
+            <env name>\Scripts\activate
+        - Windows (PowerShell):
+            .\<env name>\Scripts\Activate.ps1
+        - After activation, your terminal prompt should show (<env name>).
+
+    3. Install packages inside the venv:
+        pip install -r requirements.txt
+        - Packages are isolated to this environment.
+
+    4. Deactivate the virtual environment when done:
+        deactivate
+        - Returns terminal to global Python environment.
+
+    Notes:
+        - Always activate the venv before running scripts (ingestion, queries, etc.)
+        - Always deactivate when switching projects.
+        - If you forget activation, Python may use global packages, causing errors or version conflicts.

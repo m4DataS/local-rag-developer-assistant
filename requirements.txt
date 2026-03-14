@@ -1,0 +1,26 @@
+#OLLAMA
+# ollama>=0.9.6 not available on pip
+
+# Python HTTP requests (to call Ollama API)
+requests>=2.31.0
+
+# Vector database
+chromadb>=0.4.0
+
+# Sentence-transformers for embeddings
+sentence-transformers>=2.2.2
+
+# Transformers & Torch (for bge-small-en embeddings)
+transformers>=4.40.0
+torch>=2.1.0
+
+# Optional: simple data handling
+pandas>=2.1.0
+
+# Optional: progress bars during ingestion
+tqdm>=4.66.0
+
+# Optional: local UI for your RAG assistant
+streamlit>=1.25.0
+
+watchdog>=6.0.0
