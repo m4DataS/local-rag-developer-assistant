@@ -1,11 +1,6 @@
-# You can override the included template(s) by including variable overrides
-# SAST customization: https://docs.gitlab.com/user/application_security/sast/#available-cicd-variables
-# Secret Detection customization: https://docs.gitlab.com/user/application_security/secret_detection/pipeline/configure/
-# Dependency Scanning customization: https://docs.gitlab.com/user/application_security/dependency_scanning/#customizing-analyzer-behavior
-# Container Scanning customization: https://docs.gitlab.com/user/application_security/container_scanning/#customizing-analyzer-behavior
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ci/variables/#cicd-variable-precedence
+---
 stages:
+- sync
 - test
 - secret-detection
 sast:
@@ -13,7 +8,28 @@ sast:
 include:
 - template: Security/SAST.gitlab-ci.yml
 - template: Security/Secret-Detection.gitlab-ci.yml
+
 variables:
   SECRET_DETECTION_ENABLED: 'true'
 secret_detection:
   stage: secret-detection
+
+mirror_to_github:
+  stage: sync
+  script:
+    - git config --global user.email "m4data@auto.com"
+    - git config --global user.name "GitLab CI"
+    - GITLAB_SOURCE_USERNAME=${GITLAB_SOURCE_USERNAME::-1}
+    - GITHUB_USERNAME=${GITHUB_USERNAME::-1}
+    - git clone https://$GITLAB_SOURCE_USERNAME:$GITLAB_SOURCE_PAT@$GITLAB_SOURCE_PATH_RAG.git
+    - cd stocks_tracking-dbks-dbt
+    - git remote add github https://$GITHUB_USERNAME:$GITHUB_PAT@$GITHUB_PATH_RAG.git
+    - git branch -a
+    # Create local tracking branches for every origin/* ref (except HEAD)
+    - |
+      for b in $(git branch -r | grep -v '\->'); do
+        git branch --track "${b#origin/}" "$b" || true
+      done
+    # Now push all *local* branches and tags
+    - git push github --all --force
+    - git push github --tags --force
